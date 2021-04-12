@@ -65,7 +65,7 @@ class LicensePlate():
 
         t0 = time.time()
         #start Thread
-        self.t1 = threading.Thread(name = "t1", target=self.detect, args = ())
+        self.t1 = threading.Thread(name = "t1", target=self.detect_plate, args = ())
         self.t2 = threading.Thread(name = "t2", target=self.recognition, args = ())
         self.t3 = threading.Thread(name = "t3", target=self.read_char, args = ())
         
@@ -333,7 +333,7 @@ class LicensePlate():
                 
         self.lst_number.put(None)
 
-    def detect(self):
+    def detect_plate(self):
         source, weights, view_img, save_txt, imgsz = self.source, self.weights_lp, self.view_img, self.save_txt, self.img_size
         save_img = not self.nosave and not source.endswith('.txt')  # save inference images
         webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
@@ -468,4 +468,4 @@ class LicensePlate():
 
         self.img_plate.put(None)
 
-t = LicensePlate()
+# t = LicensePlate()
